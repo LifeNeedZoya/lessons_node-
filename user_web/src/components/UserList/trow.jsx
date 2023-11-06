@@ -1,6 +1,6 @@
 import React from "react";
 
-const TRow = ({ user }) => {
+const TRow = ({ user, handleUpdate, handleDelete }) => {
   const getDepartment = (department) => {
     switch (department) {
       case "human resource": {
@@ -51,8 +51,15 @@ const TRow = ({ user }) => {
       </td>
       <td>{getDepartment(user.department)}</td>
       <td>
-        <button className=" btn btn-warning  mx-2">засах</button>
-        <button className="  btn btn-error ">устгах</button>
+        <button
+          className=" btn btn-warning  mx-2"
+          onClick={() => handleUpdate(user.id)}
+        >
+          засах
+        </button>
+        <button className="btn btn-error" onClick={() => handleDelete(user.id)}>
+          устгах
+        </button>
       </td>
     </tr>
   );

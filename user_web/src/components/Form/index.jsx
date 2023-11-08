@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Form = ({
@@ -20,6 +20,9 @@ const Form = ({
     birthDate: "",
     department: "",
   });
+
+  console.log("SS", selectedUser);
+  console.log("FF", formData);
 
   const handleChange = (e) => {
     console.log(e.target.value);
@@ -57,9 +60,17 @@ const Form = ({
     } catch (error) {
       console.log("ERR", error);
     } finally {
+      // setFormData({
+      //   avatarUrl: "/images/avatar2.jpg",
+      //   firstName: "",
+      //   lastName: "",
+      //   email: "",
+      //   birthDate: "",
+      //   department: "",
+      // });
       setIsloading(false);
-      closeForm();
       setRefresh(!refresh);
+      closeForm();
     }
   };
 
@@ -77,6 +88,7 @@ const Form = ({
               <span className="text-base label-text">Нэр</span>
             </label>
             <input
+              required
               name="firstName"
               type="text"
               placeholder="нэрээ оруулна уу"
@@ -90,6 +102,7 @@ const Form = ({
               <span className="text-base label-text">Овог</span>
             </label>
             <input
+              required
               name="lastName"
               type="text"
               placeholder="овог оруулна уу"
@@ -103,6 +116,7 @@ const Form = ({
               <span className="text-base label-text">И-мэйл</span>
             </label>
             <input
+              required
               name="email"
               type="text"
               placeholder="таны имэйл"
@@ -116,6 +130,7 @@ const Form = ({
               <span className="text-base label-text">Төрсөн он сар</span>
             </label>
             <input
+              required
               name="birthDate"
               type="date"
               placeholder="төрсөн он сараа оруулна уу"
@@ -150,6 +165,7 @@ const Form = ({
               <span className="text-base label-text">Зураг оруулна уу</span>
             </label>
             <input
+              required
               name="avatarUrl"
               type="file"
               className="file-input file-input-bordered file-input-primary w-full max-w-xs"

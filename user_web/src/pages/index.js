@@ -16,9 +16,9 @@ export default function Home() {
   const [selectedUser, setSelectedUser] = useState(null);
 
   const closeForm = () => {
-    console.log("Formee");
     setOpen(false);
-    setSelectedUser(null);
+    setSelectedUser(() => null);
+    console.log("Form closed");
   };
 
   const getAllUser = async () => {
@@ -55,7 +55,7 @@ export default function Home() {
         MySwal.fire({
           title: "Амжилттай устгагдлаа",
           icon: "success",
-          timer: 2500,
+          timer: 200,
           showConfirmButton: false,
         }).then((r) => setRefresh(!refresh));
         //"Амжилттай устгагдлаа", "", "success"
@@ -85,14 +85,16 @@ export default function Home() {
           Шинэ хэрэглэгч нэмэх {count}
         </button>
       </div>
-      <Form
-        open={open}
-        closeForm={closeForm}
-        selectedUser={selectedUser}
-        setSelectedUser={setSelectedUser}
-        refresh={refresh}
-        setRefresh={setRefresh}
-      />
+      {open && (
+        <Form
+          open={open}
+          closeForm={closeForm}
+          selectedUser={selectedUser}
+          setSelectedUser={setSelectedUser}
+          refresh={refresh}
+          setRefresh={setRefresh}
+        />
+      )}
       <UserList
         users={userList}
         handleUpdate={handleUpdate}
